@@ -1,6 +1,6 @@
-# imperialheights
+# Gino Tourist Home
 
-Heritage luxury hotel website for Ashoka Imperial / Imperial Heights in Kochi, Kerala.
+Heritage hotel website for Gino Tourist Home in Kochi, Kerala.
 
 ## Features
 - **Old-School Heritage Vibe**: Built with warm moss green, soft sage, antique cream, and classic editorial serif typography.

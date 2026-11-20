@@ -3,12 +3,10 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BookingBar from './components/BookingBar';
 import WelcomeStory from './components/WelcomeStory';
-import MarqueeTicker from './components/MarqueeTicker';
 import AmenitiesShowcase from './components/AmenitiesShowcase';
 import RoomsSection from './components/RoomsSection';
-import TwilightSection from './components/TwilightSection';
-import BanquetsSection from './components/BanquetsSection';
 import DiningSection from './components/DiningSection';
+import BanquetsSection from './components/BanquetsSection';
 import GallerySection from './components/GallerySection';
 import ReviewsSection from './components/ReviewsSection';
 import FaqSection from './components/FaqSection';
@@ -59,24 +57,17 @@ export default function App() {
 
         {/* Two-Column Heritage Welcome Story */}
         <WelcomeStory onOpenBooking={() => handleOpenBooking()} />
-
-        {/* Continuous Animated Marquee */}
-        <MarqueeTicker />
-
-        {/* Accommodations Grid (5 Categories with Direct Rates) */}
+        {/* Accommodations Grid with Authentic Photos & Direct Rates */}
         <RoomsSection onSelectRoom={(room) => setSelectedRoom(room)} />
 
-        {/* Boutique Amenities & Curated Services Explorer */}
+        {/* Essential Amenities & Hotel Facilities */}
         <AmenitiesShowcase onOpenBooking={() => handleOpenBooking()} />
 
-        {/* Twilight & Evening Atmosphere Showcase */}
-        <TwilightSection />
-
-        {/* Grand Banquet & Conference Facilities */}
-        <BanquetsSection onOpenBooking={(type) => handleOpenBooking(type)} />
-
-        {/* The Imperial Spice Restaurant & Culinary Specials */}
+        {/* Restaurant & Dining Experience */}
         <DiningSection onOpenBooking={(type) => handleOpenBooking(type)} />
+
+        {/* Conference & Banquet Meeting Facilities */}
+        <BanquetsSection onOpenBooking={(type) => handleOpenBooking(type)} />
 
         {/* Visual Journey Gallery with Category Filters */}
         <GallerySection />

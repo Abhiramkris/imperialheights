@@ -56,8 +56,9 @@ export default {
         sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
-        '4xl': '2rem',
-        '5xl': '2.5rem',
+        '15': '15px',
+        'card': '15px',
+        'btn': '15px',
       },
       keyframes: {
         marquee: {

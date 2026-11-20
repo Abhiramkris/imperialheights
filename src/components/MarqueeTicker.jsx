@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function MarqueeTicker() {
   const items = [
-    "ASHOKA IMPERIAL KOCHI",
+    "GINO TOURIST HOME KOCHI",
     "ESTABLISHED 1984",
     "AUTHENTIC KERALA HOSPITALITY",
     "QUEEN OF THE ARABIAN SEA",

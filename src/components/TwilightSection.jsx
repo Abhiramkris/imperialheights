@@ -24,7 +24,7 @@ export default function TwilightSection() {
         <div className="relative h-[400px] sm:h-[500px] lg:h-[560px] w-full rounded-3xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl border border-[#E0D8CB] bg-neutral-900 group">
           <img
             src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=85"
-            alt="Ashoka Imperial Hotel illuminated twilight grounds and courtyard"
+            alt="Gino Tourist Home illuminated twilight grounds and courtyard"
             className="w-full h-full object-cover brightness-95 group-hover:scale-105 transition-transform duration-1000 ease-out"
           />
 

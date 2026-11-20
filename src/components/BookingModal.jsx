@@ -31,7 +31,6 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
   const [fullName, setFullName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
-  const [notes, setNotes] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [refNumber, setRefNumber] = useState('');
 
@@ -63,15 +62,15 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const generatedRef = 'ASH-' + Math.floor(100000 + Math.random() * 900000);
+    const generatedRef = 'GTH-' + Math.floor(100000 + Math.random() * 900000);
     setRefNumber(generatedRef);
     setSubmitted(true);
   };
 
   const handleWhatsAppInquiry = () => {
-    const roomTitle = selectedRoom ? selectedRoom.name : 'Grand Banquet / Hall';
+    const roomTitle = selectedRoom ? selectedRoom.name : 'Meeting Hall / Dining';
     const message = encodeURIComponent(
-      `Hello Ashoka Imperial Kochi Desk, I would like to inquire about booking:\n\n` +
+      `Hello ${hotelInfo.name} Kochi Desk, I would like to inquire about booking:\n\n` +
       `• Type: ${roomTitle}\n` +
       `• Dates: ${checkIn} to ${checkOut} (${nights} night${nights > 1 ? 's' : ''})\n` +
       `• Guests: ${guests}\n` +
@@ -85,17 +84,17 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/65 backdrop-blur-sm animate-fade-in"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-xs animate-fade-in"
       onClick={onClose}
     >
       <div 
-        className="relative bg-white rounded-3xl max-w-xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-[#DDD5C7] text-neutral-900 p-6 sm:p-8"
+        className="relative bg-white rounded-[15px] max-w-lg w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-[#DDD5C7] text-neutral-900 p-5 sm:p-7"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 z-20 w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 flex items-center justify-center transition cursor-pointer"
+          className="absolute top-4 right-4 z-20 w-8 h-8 rounded-[8px] bg-neutral-100 hover:bg-neutral-200 text-neutral-700 flex items-center justify-center transition cursor-pointer"
           aria-label="Close modal"
         >
           <X className="w-4 h-4" />
@@ -103,46 +102,46 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
 
         {submitted ? (
           /* Submission Success State */
-          <div className="text-center py-8 space-y-4 animate-fade-in">
-            <div className="w-16 h-16 rounded-full bg-moss-100 text-moss-700 mx-auto flex items-center justify-center">
-              <CheckCircle2 className="w-8 h-8" />
+          <div className="text-center py-6 space-y-4 animate-fade-in">
+            <div className="w-14 h-14 rounded-[12px] bg-moss-100 text-moss-700 mx-auto flex items-center justify-center">
+              <CheckCircle2 className="w-7 h-7" />
             </div>
 
             <div className="space-y-1">
               <span className="text-xs uppercase tracking-wider font-bold text-moss-700">
                 Reservation Request Received
               </span>
-              <h3 className="text-2xl sm:text-3xl font-bold font-editorial text-neutral-900">
+              <h3 className="text-xl sm:text-2xl font-bold font-editorial text-neutral-900">
                 Thank You, {fullName || 'Valued Guest'}
               </h3>
-              <p className="text-sm text-neutral-600 max-w-sm mx-auto">
-                Our front desk will call your number within 15 minutes to confirm your dates, guest count, and guarantee your direct rate.
+              <p className="text-xs sm:text-sm text-neutral-600 max-w-sm mx-auto">
+                Our front desk will contact your phone number shortly to confirm your booking dates and direct desk tariff.
               </p>
             </div>
 
-            <div className="p-4 rounded-2xl bg-[#FAF7F2] border border-[#E9E2D5] max-w-sm mx-auto text-left text-xs space-y-1.5">
+            <div className="p-3.5 rounded-[12px] bg-[#FAF8F5] border border-[#E9E2D5] max-w-sm mx-auto text-left text-xs space-y-1.5">
               <div className="flex justify-between">
                 <span className="text-neutral-500">Inquiry Reference:</span>
                 <span className="font-mono font-bold text-neutral-900">{refNumber}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-neutral-500">Selected Category:</span>
-                <span className="font-bold text-neutral-900">{selectedRoom?.name || 'Ashoka Imperial'}</span>
+                <span className="font-bold text-neutral-900">{selectedRoom?.name || hotelInfo.name}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-neutral-500">Dates:</span>
                 <span className="font-medium text-neutral-800">{checkIn} – {checkOut} ({nights}N)</span>
               </div>
               <div className="flex justify-between pt-1 border-t border-neutral-200">
-                <span className="text-neutral-500">Estimated Total:</span>
+                <span className="text-neutral-500">Estimated Tariff:</span>
                 <span className="font-bold text-moss-800 text-sm">₹{estimatedTotal.toLocaleString('en-IN')} (+ taxes)</span>
               </div>
             </div>
 
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-2.5">
               <button
                 onClick={handleWhatsAppInquiry}
-                className="w-full sm:w-auto px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold text-xs uppercase tracking-wider shadow-md transition flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-[15px] bg-[#25D366] hover:bg-[#20BA5A] text-white font-bold text-xs uppercase tracking-wider shadow-xs transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>Chat via WhatsApp</span>
@@ -150,56 +149,56 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
 
               <button
                 onClick={onClose}
-                className="w-full sm:w-auto px-6 py-3 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-bold text-xs uppercase tracking-wider transition"
+                className="w-full sm:w-auto px-5 py-2.5 rounded-[15px] bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-bold text-xs uppercase tracking-wider transition"
               >
-                Close Window
+                Close
               </button>
             </div>
           </div>
         ) : (
           /* Booking Form */
           <div>
-            <div className="space-y-1 mb-6">
-              <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-moss-50 border border-moss-200 text-[10px] font-bold tracking-wider uppercase text-moss-800">
+            <div className="space-y-1 mb-5">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[8px] bg-moss-50 border border-moss-200 text-[10px] font-bold tracking-wider uppercase text-moss-800">
                 <PhoneCall className="w-3 h-3 text-moss-700" />
-                <span>Quick Reservation Desk</span>
+                <span>Direct Desk Booking</span>
               </div>
-              <h3 className="text-2xl sm:text-3xl font-bold font-editorial text-neutral-900">
-                Book Your Stay Directly
+              <h3 className="text-xl sm:text-2xl font-bold font-editorial text-neutral-900">
+                Reserve Room / Inquire
               </h3>
               <p className="text-xs text-neutral-500">
-                Our front desk will call to confirm availability & direct rates
+                Zero booking fees · Immediate desk confirmation
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3.5">
               {/* Type / Room Selector */}
               <div>
                 <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                   <Hotel className="w-3.5 h-3.5 text-moss-700" />
-                  <span>Type (Room / Venue) *</span>
+                  <span>Room Category *</span>
                 </label>
                 <select
                   value={roomId}
                   onChange={(e) => setRoomId(e.target.value)}
-                  className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-xl px-3.5 py-2.5 text-xs font-semibold text-neutral-800 focus:outline-moss-700 focus:bg-white transition cursor-pointer"
+                  className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-[10px] px-3 py-2 text-xs font-semibold text-neutral-800 focus:outline-moss-700 focus:bg-white transition cursor-pointer"
                 >
-                  <optgroup label="Rooms & Suites">
+                  <optgroup label="Rooms & Tariffs">
                     {roomCategories.map((r) => (
                       <option key={r.id} value={r.id}>
                         {r.name} — ₹{r.price.toLocaleString('en-IN')} / night
                       </option>
                     ))}
                   </optgroup>
-                  <optgroup label="Venues & Events">
-                    <option value="grand-banquet">Grand Imperial Banquet Hall (200+ Capacity)</option>
-                    <option value="dining-reservation">The Imperial Spice Restaurant (Table & Feasts)</option>
+                  <optgroup label="Events & Dining">
+                    <option value="grand-banquet">Conference & Meeting Hall</option>
+                    <option value="dining-reservation">In-House Dining Reservation</option>
                   </optgroup>
                 </select>
               </div>
 
               {/* Date pickers */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2 gap-2.5">
                 <div>
                   <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                     <Calendar className="w-3.5 h-3.5 text-moss-700" />
@@ -210,7 +209,7 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
                     required
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-xl px-3.5 py-2.5 text-xs font-semibold text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
+                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-[10px] px-3 py-2 text-xs font-semibold text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
                   />
                 </div>
                 <div>
@@ -223,13 +222,13 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
                     required
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-xl px-3.5 py-2.5 text-xs font-semibold text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
+                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-[10px] px-3 py-2 text-xs font-semibold text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
                   />
                 </div>
               </div>
 
               {/* Guests and Extra Bed */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 items-center">
                 <div>
                   <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                     <Users className="w-3.5 h-3.5 text-moss-700" />
@@ -238,7 +237,7 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
                   <select
                     value={guests}
                     onChange={(e) => setGuests(e.target.value)}
-                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-xl px-3.5 py-2.5 text-xs font-semibold text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
+                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-[10px] px-3 py-2 text-xs font-semibold text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
                   >
                     <option value="1">1 Guest</option>
                     <option value="2">2 Guests</option>
@@ -247,7 +246,7 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
                   </select>
                 </div>
 
-                <div className="pt-4 sm:pt-5">
+                <div className="pt-2 sm:pt-4">
                   <label className="flex items-center gap-2 cursor-pointer text-xs font-medium text-neutral-800">
                     <input
                       type="checkbox"
@@ -255,25 +254,25 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
                       onChange={(e) => setExtraBed(e.target.checked)}
                       className="w-4 h-4 rounded text-moss-700 focus:ring-moss-700 border-neutral-300"
                     />
-                    <span>Add Extra Bed (+₹{hotelInfo.extraPersonRate}/night)</span>
+                    <span>Extra Bed (+₹{hotelInfo.extraPersonRate})</span>
                   </label>
                 </div>
               </div>
 
-              {/* Estimated Pricing Summary Card */}
+              {/* Estimated Pricing Summary Card with 12px radius */}
               {selectedRoom && (
-                <div className="p-3.5 rounded-2xl bg-moss-50 border border-moss-200/80 flex items-center justify-between text-xs">
+                <div className="p-3 rounded-[12px] bg-moss-50 border border-moss-200/80 flex items-center justify-between text-xs">
                   <div>
                     <span className="font-bold text-moss-900 block">
-                      Estimated Stay: {nights} night{nights > 1 ? 's' : ''}
+                      Estimated Duration: {nights} night{nights > 1 ? 's' : ''}
                     </span>
                     <span className="text-[11px] text-moss-700">
                       ₹{selectedRoom.price.toLocaleString('en-IN')}/night {extraBed ? `+ ₹${hotelInfo.extraPersonRate} extra bed` : ''}
                     </span>
                   </div>
                   <div className="text-right">
-                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">Total Est.</span>
-                    <span className="font-editorial text-lg font-bold text-moss-800">
+                    <span className="text-[10px] uppercase font-bold text-neutral-500 block">Estimated Total</span>
+                    <span className="font-editorial text-base font-bold text-moss-800">
                       ₹{estimatedTotal.toLocaleString('en-IN')}
                     </span>
                   </div>
@@ -281,19 +280,19 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
               )}
 
               {/* Contact Info Fields */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
                   <label className="block text-[11px] font-bold text-neutral-700 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                     <User className="w-3.5 h-3.5 text-moss-700" />
-                    <span>Full Name *</span>
+                    <span>Your Name *</span>
                   </label>
                   <input
                     type="text"
                     required
-                    placeholder="e.g. Maya Varma"
+                    placeholder="Full Name"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-xl px-3.5 py-2.5 text-xs font-medium text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
+                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-[10px] px-3 py-2 text-xs font-medium text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
                   />
                 </div>
 
@@ -308,7 +307,7 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
                     placeholder="+91 98470 12345"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-xl px-3.5 py-2.5 text-xs font-medium text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
+                    className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-[10px] px-3 py-2 text-xs font-medium text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
                   />
                 </div>
               </div>
@@ -324,31 +323,31 @@ export default function BookingModal({ initialRoomId, initialDates, onClose }) {
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-xl px-3.5 py-2.5 text-xs font-medium text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
+                  className="w-full bg-[#FAF7F2] border border-[#DDD5C7] rounded-[10px] px-3 py-2 text-xs font-medium text-neutral-800 focus:outline-moss-700 focus:bg-white transition"
                 />
               </div>
 
-              {/* Action Buttons */}
+              {/* Action Buttons with 15px radius */}
               <div className="pt-2 space-y-2">
                 <button
                   type="submit"
-                  className="w-full py-4 px-6 rounded-full bg-moss-700 hover:bg-moss-800 text-white font-bold text-xs uppercase tracking-widest transition-all duration-300 shadow-md flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                  className="w-full py-3 px-5 rounded-[15px] bg-moss-700 hover:bg-moss-800 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xs flex items-center justify-center gap-2 cursor-pointer active:scale-98"
                 >
-                  <span>Request Booking Call</span>
+                  <span>Submit Booking Request</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
 
                 <button
                   type="button"
                   onClick={handleWhatsAppInquiry}
-                  className="w-full py-3 px-6 rounded-full bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-900 font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-2.5 px-5 rounded-[15px] bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-900 font-bold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <MessageSquare className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Or Instant WhatsApp Inquiry</span>
+                  <span>Direct WhatsApp Inquiry</span>
                 </button>
               </div>
 
-              <div className="flex items-center justify-center gap-2 text-[11px] text-neutral-500 font-medium pt-1">
+              <div className="flex items-center justify-center gap-1.5 text-[11px] text-neutral-500 font-medium pt-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-moss-700" />
                 <span>Zero advance deposit needed · Direct front desk confirmation</span>
               </div>
